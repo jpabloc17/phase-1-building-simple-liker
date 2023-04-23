@@ -17,7 +17,7 @@ function handleFunction(heart){
   // Invoke mimicServerCall to simulate making a server request
   mimicServerCall()
     .then(() => {
-      // Checking the post was liked and Change the heart 
+      // Checking if the post was liked or not and Change the heart 
       if(heart.target.innerText === EMPTY_HEART){
         heart.target.innerText = FULL_HEART;
         heart.target.className = "activated-heart"
