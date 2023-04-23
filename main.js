@@ -4,6 +4,38 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
+//getting and hiding error message when page is first loaded
+const modal = document.getElementById("modal");
+modal.classList.add("hidden")
+
+// getting all the heart buttons and adding an event to them with a callback function
+const hearts = document.querySelectorAll(".like-glyph");
+hearts.forEach((item) => item.addEventListener("click", handleFunction))
+
+
+function handleFunction(heart){
+  // Invoke mimicServerCall to simulate making a server request
+  mimicServerCall()
+    .then(() => {
+      // Checking the post was liked and Change the heart 
+      if(heart.target.innerText === EMPTY_HEART){
+        heart.target.innerText = FULL_HEART;
+        heart.target.className = "activated-heart"
+      } else {
+        // heart.target.innerText === FULL_HEART
+        heart.target.innerText = EMPTY_HEART
+        heart.target.className = "like-glyph"
+      }
+      console.log(heart.target.innerText)
+    })
+    // Display an error message in the DOM for three seconds 
+    .catch((error) => {
+      modal.className = "";
+      modal.innerText = error;
+      setTimeout(() => modal.className = "hidden", 3000);
+    })
+}
+
 
 
 
